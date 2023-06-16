@@ -20,6 +20,15 @@ io.on("connection", (socket) => {
     console.log('TEXT', text);
   })
 
+  socket.on("message_with_ack", (arg, callback) => {
+    console.log("Message with Ack", arg);
+    if (typeof callback === 'function') {
+      callback({
+        test: "Ok. Got it"
+      });
+    }
+  });
+
   socket.on('json_message', (json) => {
     console.log('JSON', json);
   })
